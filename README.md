@@ -1,5 +1,5 @@
 FVGetApp
-=======-
+========
 
 FVGetApp is an open source class to get and set default apps for protocols, MIME 
 types and extensions. It's also possible to retrieve a list of apps that can open a 
