@@ -13,7 +13,7 @@ and not @"http:" as an argument). When dealing with file extensions, never inclu
 dot in the beginning of the argument(i.e. pass @"png" instead of @".png").
 
 
-Methods for setting the default application for a protocol, MIME type or extension will 
+The methods to set the default application for a protocol, MIME type or extension will 
 always return a BOOL value indicating if it was possible to change the default 
 application. In normal circumstances, it will return a YES value. These methods include:
 
@@ -26,21 +26,18 @@ application. In normal circumstances, it will return a YES value. These methods 
 +(BOOL)setApplication:(NSString *)appDomain forMIMEType:(NSString 
 *)MIMEType;
 
-For the first method of the list pass a URL for the app bundle(i.e. /applications/
-Safari.app). For the other 2 methods, pass the app domain(i.e. com.apple.itunes).
+The arguments for the first method are a URL pointing to the location of the bundle(e.g. /applications/
+Safari.app). For the other 2 methods, pass the app domain(e.g. com.apple.itunes).
+
 The method for checking if an app can open a file also returns a BOOL value. The first 
-argument must be the URL for an app bundle and the second one an URL for a file.
+argument is the URL for an app bundle and the second one a URL for a file.
+
 +(BOOL)isAppCompatible:(NSURL *)appURL withFile:(NSURL *)fileURL;
 
-Methods for getting the default app for a specific protocol, extension or MIME type 
-always return a NSDictionary. Methods for getting an app list always return a NSArray of 
-NSDictionary. The returned NSDictionary object(s) will always be created using the 
-information on the app's info.plist. There are two extra keys which are used to get the 
-app icon and the bundle URL:
-
-FVGetAppIconProperty;
-
-FVGetAppURLProperty;
+The methods for getting the default app for a specific protocol, extension or MIME type 
+always return a NSDictionary. The methods that return list of apps always return a NSArray containing 
+NSDictionarys. The returned NSDictionary object(s) are created using the 
+information obtained from the app's info.plist. For example, to get the copyright information, get the value for NSHumanReadableCopyright. There are two extra keys that are not present on NSBundles. Those are FVGetAppIconProperty and FVGetAppURLProperty. What each one contains is pretty much self explanatory.
 
 To get the default app for a protocol, extension or MIME type, use one of the following 
 methods:
@@ -49,8 +46,9 @@ methods:
 
 +(NSDictionary *)appForMIMEType:(NSString *)MIMEType;
 
-+(NSDictionary *)appForExtension:(NSString *)extension;To get a list of apps that can open a certain protocol, extension or MIME type, use one 
-of the following methods:
++(NSDictionary *)appForExtension:(NSString *)extension;
+
+To get a list of apps that can open a certain protocol, extension or MIME type, use one of the following methods:
 
 +(NSArray *)allAppsForProtocol:(NSString *)protocol;
 
